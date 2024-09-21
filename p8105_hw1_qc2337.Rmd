@@ -5,27 +5,44 @@ date: "2024-09-21"
 ---
 # hw1 Problem 1
 
+First loaded the palmerpenguins package and load pemnguins dataset
+
 ```{r}
-# First loaded the palmerpenguins package and load pemnguins dataset
+
 library(palmerpenguins)
 data("penguins", package = "palmerpenguins")
 
-# Second description of the penguins dataset using inline R code
-# Show variable names
+```
+
+Second description of the penguins dataset using inline R code
+show variable names, structure of the dataset, size of the dataset, mean flipper length calculation
+
+```{r}
+
 names(penguins)
 
-# Show structure of the dataset
 str(penguins)
 
-# Size of the dataset
 nrow(penguins)
 ncol(penguins)
 
-# Mean flipper length calculation
 mean_flipper_length <- mean(penguins$flipper_length_mm, na.rm = TRUE)
 mean_flipper_length
 
-# Make a scatterplot
+```
+
+From the description code, we know that in the penguins dataset,
+variable names include: `species`, `island`, `bill_length_mm`,`bill_depth_mm`,  `flipper_length_mm`, `body_mass_g`, `sex`, `year`.
+
+The size of the dataset includes: 344 rows and 8 columns.
+
+The mean flipper length is 200.9152.
+
+
+Make a scatterplot and save the scatterplot
+
+```{r}
+
 library(ggplot2)
 ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
     geom_point() + 
@@ -33,8 +50,8 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = s
          x = "Bill Length (mm)",
          y = "Flipper Length (mm)")
 
-# Save the scatterplot
 ggsave("penguins_scatterplot.png")
+
 ```
 
 # hw1 Problem 2
@@ -46,7 +63,15 @@ Loaded necessary packages (e.g. `tidyverse`) for problem 2.
 library(tidyverse)
 ```
 
-Created `p2_df` as the data frame.
+Created `p2_df` as the data frame, comprised of:
+
+* a random sample of size 10 from a standard Normal distribution
+
+* a logical vector indicating whether elements of the sample are greater than 0
+
+* a character vector of length 10
+
+* a factor vector of length 10, with 3 different factor “levels”
 
 ```{r}
   p2_df = 
@@ -89,6 +114,8 @@ numeric_char_samp = as.numeric(pull(p2_df, char_samp))
 numeric_fact_samp = as.numeric(pull(p2_df, fact_samp))
 
 ```
+
+I find that:
 
 The logical variable turns into 2 numeric: `TRUE` becomes `1` and `FALSE` becomes `0`.
 
