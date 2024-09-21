@@ -35,7 +35,65 @@ ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = s
 
 # Save the scatterplot
 ggsave("penguins_scatterplot.png")
+```
 
+# hw1 Problem 2
+This is code for the problem2 at P8105.
+
+Loaded necessary packages (e.g. `tidyverse`) for problem 2.
+
+```{r}
+library(tidyverse)
+```
+
+Created `p2_df` as the data frame.
+
+```{r}
+  p2_df = 
+    tibble(
+      norm_samp = rnorm(n = 10),
+      samp_g0 = norm_samp > 0,
+      char_samp = letters [1:10],
+      fact_samp = factor(rep(c("1", "2", "3"), length = 10))
+    )
+print(p2_df)
+```
+
+Take the mean of each variable in the `p2_df`
+
+```{r}
+  mean_norm_samp = mean(pull(p2_df, norm_samp), na.rm = TRUE)
+  mean_norm_samp 
+
+  mean_samp_g0 =  mean(pull(p2_df, samp_g0), na.rm = TRUE)
+  mean_samp_g0
+
+  mean_char_samp = mean(pull(p2_df, char_samp), na.rm = TRUE)
+  mean_char_samp
+  
+  mean_fact_samp = mean(pull(p2_df, fact_samp), na.rm = TRUE)
+  mean_fact_samp
+```
+
+I found that the `random sample of size 10`  and `logical vector ` works,
+  but `character vector` and `factor vector ` doesn't work.
+  
+Applies the `as.numeric` function to the logical, character, and factor variables
+
+```{r echo=TRUE, results='hide'}
+
+numeric_samp_g0 = as.numeric(pull(p2_df, samp_g0))
+
+numeric_char_samp <- as.numeric(pull(p2_df, char_samp))
+
+numeric_fact_samp <- as.numeric(pull(p2_df, fact_samp))
 
 ```
+
+The logical variable turns into 2 numeric: `TRUE` becomes `1` and `FALSE` becomes `0`.
+
+The character variable turns to `NA` for all elements, R cannot calculate the mean. So when I try to take the mean of character variable, it shows warning message: argument is not numeric or logical: returning NA.
+
+The factor variable turns to numeric variable which is the factor levels internally in R. Now I can take the mean of factor variable, because my factor variable is in order. 
+
 
