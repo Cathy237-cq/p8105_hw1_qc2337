@@ -3,27 +3,39 @@ title: "p8105_hw1_qc2337"
 output: github_document
 date: "2024-09-21"
 ---
+# hw1 Problem 1
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+# First loaded the palmerpenguins package and load pemnguins dataset
+library(palmerpenguins)
+data("penguins", package = "palmerpenguins")
+
+# Second description of the penguins dataset using inline R code
+# Show variable names
+names(penguins)
+
+# Show structure of the dataset
+str(penguins)
+
+# Size of the dataset
+nrow(penguins)
+ncol(penguins)
+
+# Mean flipper length calculation
+mean_flipper_length <- mean(penguins$flipper_length_mm, na.rm = TRUE)
+mean_flipper_length
+
+# Make a scatterplot
+library(ggplot2)
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+    geom_point() + 
+    labs(title = "Scatterplot of Flipper Length vs Bill Length by Species",
+         x = "Bill Length (mm)",
+         y = "Flipper Length (mm)")
+
+# Save the scatterplot
+ggsave("penguins_scatterplot.png")
+
+
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
