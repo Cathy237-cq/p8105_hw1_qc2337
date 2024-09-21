@@ -80,13 +80,13 @@ I found that the `random sample of size 10`  and `logical vector ` works,
   
 Applies the `as.numeric` function to the logical, character, and factor variables
 
-```{r echo=TRUE, results='hide'}
+```{r echo=TRUE, eval=FALSE}
 
 numeric_samp_g0 = as.numeric(pull(p2_df, samp_g0))
 
-numeric_char_samp <- as.numeric(pull(p2_df, char_samp))
+numeric_char_samp = as.numeric(pull(p2_df, char_samp))
 
-numeric_fact_samp <- as.numeric(pull(p2_df, fact_samp))
+numeric_fact_samp = as.numeric(pull(p2_df, fact_samp))
 
 ```
 
